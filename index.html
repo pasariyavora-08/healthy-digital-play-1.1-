@@ -259,9 +259,17 @@ addEventListener('keydown',e=>{
   if(k==='p'){ if(state==='playing')pauseGame(); else if(state==='paused')resumeGame(); return; }
   if(k==='m'){ toggleMute(); return; }
   if(state==='playing'){ if(k==='w') tryFocus(0); if(k==='arrowup') tryFocus(1); }
+  // stuck-key safety: pressing one direction releases its opposite. Recovers instantly from a
+  // dropped keyup (keyboard rollover when both players press at once) without touching the other player's keys.
+  if(k==='a') keys['d']=false; else if(k==='d') keys['a']=false;
+  else if(k==='arrowleft') keys['arrowright']=false; else if(k==='arrowright') keys['arrowleft']=false;
   keys[k]=true;
 });
 addEventListener('keyup',e=>{ keys[e.key.toLowerCase()]=false; });
+// if the window loses focus we never get the keyup, so clear everything (both players are paused anyway)
+function clearKeys(){ for(const k in keys) keys[k]=false; }
+addEventListener('blur', clearKeys);
+document.addEventListener('visibilitychange', ()=>{ if(document.hidden) clearKeys(); });
 function tryFocus(i){ const p=G.players[i]; if(p.dead) return;
   if(p.focus>=100 && p.focusActive<=0){ p.focusActive=3.0; p.focus=0; sfx.focus();
     G.floaters.push(flt(p.x, PF_TOP+40, 'FOCUS! 🧘', C.purple, 1.4, true)); } }
