@@ -76,7 +76,8 @@
   .vchip.health{background:var(--mint);} .vchip.bond{background:var(--pink);}
   /* compact the 6-character select so it fits the stage */
   #select{gap:4px;padding-top:10px;}
-  #select .title{font-size:clamp(18px,3.6vw,32px);margin:2px 0;}
+  #select .title{font-size:clamp(28px,5.2vw,46px);margin:2px 0;}
+  #select .sub{font-size:clamp(11px,1.9vw,14px);padding:4px 14px;}
   #select .eventbar{margin-top:0;}
   .cards{display:flex;gap:11px;flex-wrap:wrap;justify-content:center;max-width:660px;}
   .ccard{width:205px;background:var(--cream);border:4px solid #161616;border-radius:16px;padding:5px 7px 8px;cursor:pointer;
@@ -151,15 +152,10 @@
       <div class="evt"><b>Beyond the Screen</b></div>
       <div class="logo" id="logo2"></div>
     </div>
-    <h1 class="title">
-      <span class="w" style="color:var(--mint)">HEALTHY</span>
-      <span class="w" style="color:var(--blue)">DIGITAL</span>
-      <span class="w" style="color:var(--yellow)">PLAY</span>
+    <h1 class="title" style="line-height:1.08">
+      <span class="w" style="color:var(--cream)">ท่องโลกหน้าจอ</span>
+      <span class="w" style="color:var(--cream)">เติบโตอย่างสมดุล</span>
     </h1>
-    <div class="values">
-      <div class="vchip health">🌱 Healthy Gaming</div>
-      <div class="vchip bond">💛 Family Bonding</div>
-    </div>
     <div class="sub" id="pickMsg">👆 Player 1 — pick your gamer!</div>
     <div class="cards" id="cards"></div>
     <div class="btnrow">
